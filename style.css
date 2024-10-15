@@ -168,8 +168,8 @@ a {
     text-decoration: none;
 }
 
-a:active, a:visited {
-    color: var(--main-color);
+a:focus, a:visited, a:active {
+     color: var(--main-color);
 }
 
 
