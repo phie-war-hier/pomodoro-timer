@@ -166,6 +166,7 @@ p {
 
 a {
     text-decoration: none;
+    color: var(--main-color)
 }
 
 a:focus, a:visited, a:active {
