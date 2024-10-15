@@ -43,14 +43,14 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 1.8rem;
+    gap: 1.4rem;
 }
 
 .container {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 0.6rem;
+    gap: 0.4rem;
 
  }
 
@@ -141,14 +141,45 @@ p {
     display: flex;
     flex-direction: row;
     gap: 0.4rem;
+    align-items: center;
 
 }
 
-.circle {
+.circleSe {
     width: 24px;
     height: 24px;
-    border: 2.4px solid var(--main-color);
+    border: 2.4px solid var(--tertiary-color);
     border-radius: 10rem;
     
 }
 
+
+.circleBre {
+    width: 14px;
+    height: 14px;
+    border: 2px solid var(--main-color);
+    border-radius: 10rem;  
+}
+
+
+
+
+a {
+    text-decoration: none;
+}
+
+a:active, a:visited {
+    color: var(--main-color);
+}
+
+
+button:hover {
+    background-color: var(--main-color);
+    color: var(--background-color);   
+}
+
+a:hover {
+    background-color: var(--main-color);
+    color: var(--background-color);   
+    
+}

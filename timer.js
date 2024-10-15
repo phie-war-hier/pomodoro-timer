@@ -76,6 +76,7 @@ function startSession() {
 
 function startBreak() {
     breakSound.play();
+    document.getElementById('se'+counter).style.backgroundColor = "var(--tertiary-color)"; 
     document.getElementById('ringStyle').style.borderColor = "var(--main-color)"; 
     document.getElementById('message').innerHTML = "Take a break";
     document.getElementById('message').classList.add('breakMessage');
@@ -99,7 +100,7 @@ function startBreak() {
         if(seconds <= 0) {
             if(minutes <= 0) {
                 minutes = 0;
-                document.getElementById('se'+counter).style.backgroundColor = "var(--tertiary-color)"; 
+                document.getElementById('bre'+counter).style.backgroundColor = "var(--main-color)"; 
                 counter = counter + 1;
                 clearInterval(intervalMin);
                 clearInterval(intervalSec);
@@ -112,9 +113,13 @@ function startBreak() {
 }
 
 
-
+/*
 function resetSession() {
     stopSound.play();
+    for (let i = 1; i < 6; i++) {   
+        document.getElementById('se'+i).style.backgroundColor = "var(--background-color)"; 
+        document.getElementById('bre'+i).style.backgroundColor = "var(--background-color)"; 
+    }
     document.getElementById('ringStyle').style.borderColor = "var(--main-color)"; 
     clearInterval(intervalMin);
     clearInterval(intervalSec);
@@ -128,5 +133,5 @@ function resetSession() {
     document.getElementById("setTime").style.display = "flex"; 
      
 }
-
+*/
 
