@@ -4,8 +4,36 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>pomodoro timer</title>
+
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <div id="container">
+        <p id="work" class="label">Work</p>
+        <p id="break" class="label">Break</p>
+        <p id="cycles" class="label">Cycles</p>
+
+        <div id="work-timer" class="timer">
+            <p id="w-minutes">45</p>
+            <p>:</p>
+            <p id="w-seconds">00</p>
+        </div>
+
+        <p id="counter" class="timer">0</p>
+
+        <div id="break-timer" class="timer">
+            <p id="b-minutes">15</p>
+            <p>:</p>
+            <p id="b-seconds">00</p>
+        </div>
+
+        <button id="start" class="btn">Start</button>
+        <button id="stop" class="btn">Stop</button>
+        <button id="reset" class="btn">Reset</button>
+
+    </div>
+
+    <script src="main.js"></script>
     
 </body>
 </html>
