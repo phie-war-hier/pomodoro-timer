@@ -20,10 +20,23 @@ start.addEventListener('click', function() {
     }
 })
 
+stop.addEventListener('click', function(){
+    stopInterval();
+    startTimer = undefined;
+})
 
 
+reset.addEventListener('click', function(){
+    wm.innerText = 45;
+    ws.innerText = "00";
+    bm.innerText = 15;
+    bs.innerText = "00";
+    document.getElementById('counter').innerText = 0;
+    stopInterval();
+    startTimer = undefined;
+})
 
-
+// Function to start the timer
 function timer() {
     // Work Timer Countdown
     if(ws.innerText != 0) {
@@ -45,12 +58,18 @@ function timer() {
 
     // Cycle Counter
     if(wm.innerText == 0 && ws.innerText == 0 && bm.innerText == 0 && bs.innerText == 0) {
-        wm.innerText == 45;
-        ws.innerText == '00';
-        bm.innerText == 15;
-        bs.innerText == '00';
+        wm.innerText = 45;
+        ws.innerText = "00";
+        bm.innerText = 15;
+        bs.innerText = "00";
 
         document.getElementById('counter').innerText++;
 
     }
+}
+
+
+// Function to stop the timer
+function stopInterval() {
+    clearInterval(startTimer);
 }
