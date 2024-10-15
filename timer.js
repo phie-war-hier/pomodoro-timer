@@ -23,22 +23,22 @@ var intervalSec;
 
 var counter = 1;
 
+
 function template() {
     document.getElementById('minutes').innerHTML = minutes;
     document.getElementById('seconds').innerHTML = seconds;
 }
-
 
 var startSound = new Audio("DigitalClickPrimax.mp3");
 var breakSound = new Audio("TypewriterBellRamsamba.wav");
 var stopSound = new Audio("DigitalClickReversePrimax.mp3");
 
 
-
 function startSession() {
     minutes = timerFocus;
     if(intervalMin === undefined) { 
         startSound.play();
+        document.getElementById('ringStyle').style.borderColor = "var(--tertiary-color)"; 
         document.getElementById('message').classList.remove('breakMessage');
         document.getElementById('message').innerHTML = "Session " + counter + " started";
         minutes = minutes - 1;
@@ -76,6 +76,7 @@ function startSession() {
 
 function startBreak() {
     breakSound.play();
+    document.getElementById('ringStyle').style.borderColor = "var(--main-color)"; 
     document.getElementById('message').innerHTML = "Take a break";
     document.getElementById('message').classList.add('breakMessage');
     minutes = timerBreak - 1;
@@ -93,11 +94,12 @@ function startBreak() {
 
     function secondsTimer() {
         seconds = seconds - 1;
-        document.getElementById('seconds').innerHTML = seconds;
+        document.getElementById('seconds').innerHTML = seconds;    
 
         if(seconds <= 0) {
             if(minutes <= 0) {
                 minutes = 0;
+                document.getElementById('se'+counter).style.backgroundColor = "var(--tertiary-color)"; 
                 counter = counter + 1;
                 clearInterval(intervalMin);
                 clearInterval(intervalSec);
@@ -113,6 +115,7 @@ function startBreak() {
 
 function resetSession() {
     stopSound.play();
+    document.getElementById('ringStyle').style.borderColor = "var(--main-color)"; 
     clearInterval(intervalMin);
     clearInterval(intervalSec);
     minutes = "00";

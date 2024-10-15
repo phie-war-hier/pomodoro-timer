@@ -2,7 +2,7 @@
 	--main-color: #1B1B1B;
     --second-color: #CFCFCF;
 	--accent-color: #6100FF;
-    --tertiary-color: #55FFA3;
+    --tertiary-color: #2bc975;
     --background-color:#F5F5F5;
 	--font-large: 148%;
     --font-medium: 96%;
@@ -43,14 +43,14 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 1.2rem;
+    gap: 1.8rem;
 }
 
 .container {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 0.4rem;
+    gap: 0.6rem;
 
  }
 
@@ -59,6 +59,10 @@ h4 {
     font-weight: normal;
 }
 
+h5 {
+    font-size: var(--font-medium);
+    font-weight: normal;
+}
 
 .timer {
     color: var(--main-color);
@@ -85,7 +89,7 @@ h4 {
 
 .breakMessage {
     display: block;
-    color: var(--accent-color);
+    color: var(--main-color);
 }
 
 
@@ -130,5 +134,21 @@ input {
 
 p {
     font-size: var(--font-small);
+}
+
+
+.progressSessions {
+    display: flex;
+    flex-direction: row;
+    gap: 0.4rem;
+
+}
+
+.circle {
+    width: 24px;
+    height: 24px;
+    border: 2.4px solid var(--main-color);
+    border-radius: 10rem;
+    
 }
 

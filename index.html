@@ -7,10 +7,10 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body onload="template()">
+    <!--<a href="test.html">Test</a>-->
     <div class="container">
         <h4>Pomodoro Timer</h4>
-        
-        <div class="timer">
+        <div id="ringStyle" class="timer">
             <div class="row">
                 <h4 id="minutes"></h4>
                 <h4>:</h4>
@@ -18,16 +18,24 @@
             </div> 
             <p><span id="showBreak">0</span> minutes break</p>
         </div>
-
-        <p id="message"></p>
+    </div>
+    <div class="container">
+        <h5 id="message"></h5>
+        <div class="progressSessions">
+            <div id="se1" class="circle"></div>
+            <div id="se2" class="circle"></div>
+            <div id="se3" class="circle"></div>
+            <div id="se4" class="circle"></div>
+            <div id="se5" class="circle"></div>
+        </div>
     </div>
     <div id="setTime">
         <form>
             <label for="timerFocus">Focus time 
-                <input type="number" id="inputTimerFocus" name="timerFocus">
+                <input type="number" id="inputTimerFocus" name="timerFocus" required>
             </label>
             <label for="timerBreak">Break time  
-            <input type="number" id="inputTimerBreak" name="timerBreak">
+            <input type="number" id="inputTimerBreak" name="timerBreak" required>
             </label>
         </form>
         <button class="btn" onclick="setTime()">Set Time</button>
