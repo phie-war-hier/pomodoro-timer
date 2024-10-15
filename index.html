@@ -7,35 +7,39 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body onload="template()">
-    <h1>Pomodoro Timer</h1>
-    <div id="visualtimer" class="container cycle">
-        <div class="row">
-            <h4 id="minutes"></h4>
-            <h4>:</h4>
-            <h4 id="seconds"></h4>
-        </div> 
+    <div class="container">
+        <h4>Pomodoro Timer</h4>
+        
+        <div class="timer">
+            <div class="row">
+                <h4 id="minutes"></h4>
+                <h4>:</h4>
+                <h4 id="seconds"></h4>
+            </div> 
+            <p><span id="showBreak">0</span> minutes break</p>
+        </div>
+
+        <p id="message"></p>
     </div>
-    <p id="message"></p>
-<div>
+    <div id="setTime">
         <form>
-        <label for="timerFocus">Focus time:
-          <input type="number" id="inputTimerFocus" name="timerFocus">
-        </label>
-        <label for="timerBreak">Break time: 
-          <input type="number" id="inputTimerBreak" name="timerBreak">
-        </label>
-  
-    </form>
-    <button class="btn" onclick="setTime()">Set Time</button>
-    <p>Break is set to <span id="showBreak">0</span> minutes</p>
+            <label for="timerFocus">Focus time 
+                <input type="number" id="inputTimerFocus" name="timerFocus">
+            </label>
+            <label for="timerBreak">Break time  
+            <input type="number" id="inputTimerBreak" name="timerBreak">
+            </label>
+        </form>
+        <button class="btn" onclick="setTime()">Set Time</button>
     </div>
 
 
     <div class="container">
-        <button id="start" class="btn" onclick="startSession()">Start Session</button>
+        <button id="start" class="btn" onclick="startSession()">Start</button>
         <!--<button id="pause" class="btn" onclick="pauseSession()">Pause Session</button>-->
-        <button id="reset" class="btn" onclick="resetSession()">Reset Session</button>
+        <button id="reset" class="btn" onclick="resetSession()">Reset</button>
     </div>
     <script src="timer.js"></script>
+
 </body>
 </html>

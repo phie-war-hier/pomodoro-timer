@@ -1,29 +1,22 @@
-//var timerFocus = 2;  Sollte durch Input definiert werden können
-//var timerBreak = 1;  Sollte durch Input definiert werden können
-
 var timerFocus;
 var timerBreak;
 
-//document.getElementById("inputTimerFocus").value = timerFocus;
-//document.getElementById("inputTimerBreak").value = timerBreak;
+var minutes = "00";
+var seconds = "00";
 
 function setTime() {
     timerFocus = document.getElementById("inputTimerFocus").value;
     if (timerFocus){
-        document.getElementById("minutes").innerHTML = timerFocus;
-        
+        document.getElementById("minutes").innerHTML = timerFocus;   
     }
 
     timerBreak = document.getElementById("inputTimerBreak").value;
     if (timerBreak){
         document.getElementById("showBreak").innerHTML = timerBreak;    
-    }
+    } 
 
- 
+    document.getElementById("setTime").style.display = "none"; 
 }
-
-var minutes = timerFocus;
-var seconds = "00";
 
 var intervalMin;
 var intervalSec;
@@ -122,14 +115,15 @@ function resetSession() {
     stopSound.play();
     clearInterval(intervalMin);
     clearInterval(intervalSec);
-    minutes = timerFocus;
+    minutes = "00";
     seconds = "00";
     document.getElementById('minutes').innerHTML = minutes;
     document.getElementById('seconds').innerHTML = seconds;
     document.getElementById('message').classList.remove('breakMessage');
     counter = 1;
     intervalMin = undefined;
-    
+    document.getElementById("setTime").style.display = "flex"; 
+     
 }
 
 
