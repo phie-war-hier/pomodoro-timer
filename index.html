@@ -3,39 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>pomodoro timer</title>
-
+    <title>Pomodoro Timer</title>
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
-    <div id="container">
-        <p id="work" class="label">Work</p>
-        <div id="work-timer" class="timer">
-            <p id="w_minutes">00</p>
-            <p>:</p>
-            <p id="w_seconds">10</p>
-        </div>
-
-        <p id="cycles" class="label">Cycles</p>
-        <p id="counter" class="timer">0</p>
-
-        <p id="break" class="label">Break</p>
-        <div id="break-timer" class="timer">
-            <p id="b_minutes">00</p>
-            <p>:</p>
-            <p id="b_seconds">05</p>
-        </div>
-
-        <p id="message"></p>
-
-        <button id="start" class="btn">Start</button>
-        <button id="stop" class="btn">Stop</button>
-        <button id="reset" class="btn">Reset</button>
-
+<body onload="template()">
+    <h1>Pomodoro Timer</h1>
+    <div id="visualtimer" class="container cycle">
+        <div class="row">
+            <h4 id="minutes"></h4>
+            <h4>:</h4>
+            <h4 id="seconds"></h4>
+        </div> 
+    </div>
+    <p id="message"></p>
+<div>
+        <form>
+        <label for="timerFocus">Focus time:
+          <input type="number" id="inputTimerFocus" name="timerFocus">
+        </label>
+        <label for="timerBreak">Break time: 
+          <input type="number" id="inputTimerBreak" name="timerBreak">
+        </label>
+  
+    </form>
+    <button class="btn" onclick="setTime()">Set Time</button>
+    <p>Break is set to <span id="showBreak">0</span> minutes</p>
     </div>
 
-    <script src="main.js"></script>
-    
+
+    <div class="container">
+        <button id="start" class="btn" onclick="startSession()">Start Session</button>
+        <!--<button id="pause" class="btn" onclick="pauseSession()">Pause Session</button>-->
+        <button id="reset" class="btn" onclick="resetSession()">Reset Session</button>
+    </div>
+    <script src="timer.js"></script>
 </body>
 </html>
-
