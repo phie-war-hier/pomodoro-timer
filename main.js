@@ -13,7 +13,7 @@ var startTimer;
 
 var startSound = new Audio("DigitalClickPrimax.mp3");
 var pauseSound = new Audio("TypewriterBellRamsamba.wav");
-var resetSound = new Audio("DigitalClickReversePrimax.mp3")
+var stopSound = new Audio("DigitalClickReversePrimax.mp3")
 
 start.addEventListener('click', function() {
     if(startTimer === undefined){
@@ -26,7 +26,7 @@ start.addEventListener('click', function() {
 
 stop.addEventListener('click', function(){
     stopInterval();
-    pauseSound.play();
+    stopSound.play();
     startTimer = undefined;
 })
 
@@ -38,7 +38,7 @@ reset.addEventListener('click', function(){
     bs.innerText = "00";
     document.getElementById('counter').innerText = 0;
     stopInterval();
-    resetSound.play();
+    stopSound.play();
     startTimer = undefined;
 })
 
@@ -46,6 +46,7 @@ reset.addEventListener('click', function(){
 function timer() {
     // Work Timer Countdown
     if(ws.innerText != 0) {
+        document.getElementById('message').innerHTML = "Session started";
         ws.innerText--;
     } else if(wm.innerText != 0 && ws.innerText == 0) {
         ws.innerText = 59;
@@ -54,9 +55,11 @@ function timer() {
 
     // Break Timer Countdown
     if(wm.innerText == 0 && ws.innerText == 0) {
+        pauseSound.play();
+        document.getElementById('message').innerHTML = "Session completed: Take a break.";
+        document.getElementById('message').classList.add('breakMessage');
         if(bs.innerText != 0) {
-            bs.innerText--; 
-            pauseSound.play();
+            bs.innerText--;     
         } else if(bm.innerText != 0 && bs.innerText == 0) {
             bs.innerText = 59;
             bm.innerText --;
@@ -69,8 +72,10 @@ function timer() {
         ws.innerText = "00";
         bm.innerText = 15;
         bs.innerText = "00";
-
+        document.getElementById('message').innerHTML = "Session started";
+        document.getElementById('message').classList.remove('breakMessage');
         document.getElementById('counter').innerText++;
+        startSound.play();
 
     }
 }

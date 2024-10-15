@@ -3,3 +3,10 @@
 .timer {
     display: flex;
 }
+
+
+
+.breakMessage {
+    display: block;
+    color: red;
+}
