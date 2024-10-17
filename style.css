@@ -94,13 +94,20 @@ h5 {
 
 
 .btn {
-    width: 6rem;
-    border: 1px solid var(--main-color);
+    width: 2rem;
+    height: 2rem;
+    border: 2px solid var(--main-color);
     cursor: pointer;
-    border-radius: 10rem;
-    padding-inline: 0.8rem;
-    padding-block: 0.2rem;
+    border-radius: 40rem;
+    padding-inline: 0.2rem;
+    padding-block-start: 0.26rem;
     font-size: var(--font-medium);
+}
+
+.buttons {
+    display: flex;
+    flex-direction: row;
+    gap: 0.6rem;
 }
 
 #setTime {
@@ -110,7 +117,10 @@ h5 {
     align-items: center;
 
 }
+
 form {
+    margin-inline: auto;
+    width: 60%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -119,13 +129,13 @@ form {
 }
 
 label {
-    width: 72%;
+    font-size: var(--font-small);
 }
 
 
 input {
-    margin-inline: 0.4rem;
-    padding: 0.4rem;
+    margin-inline: 0.2rem;
+    padding: 0.2rem;
     width: 40%;
 
 
@@ -164,26 +174,8 @@ p {
 
 
 
-a {
-    text-decoration: none;
-    color: var(--main-color)
-}
-
-a:focus, a:visited, a:active {
-     color: var(--main-color);
-}
 
 
-button:hover {
-    background-color: var(--main-color);
-    color: var(--background-color);   
-}
-
-a:hover {
-    background-color: var(--main-color);
-    color: var(--background-color);   
-    
-}
 
 
 #nullMin {
