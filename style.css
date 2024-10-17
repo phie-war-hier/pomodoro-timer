@@ -187,3 +187,19 @@ p {
     font-size: var(--font-large);
     font-weight: normal;
 }
+
+
+footer {
+    bottom: 0;
+    position: fixed;
+    font-size: var(--font-small);
+    margin-block: 1.4rem;
+
+}
+
+footer a {
+    color: var(--tertiary-color);
+    text-decoration: none;
+    font-weight: normal;
+  
+}
