@@ -72,7 +72,6 @@ function startSession() {
         function secondsTimer() {
             seconds = seconds - 1;
             document.getElementById('seconds').innerHTML = seconds;
-            console.log(seconds);
             if(seconds <= 9) {
                 document.getElementById('nullSec').style.display="block";
             } else {
@@ -101,8 +100,14 @@ function startBreak() {
     document.getElementById('message').innerHTML = "Take a break";
     document.getElementById('message').classList.add('breakMessage');
     minutes = timerBreak - 1;
+    if(minutes > 9) {
+        document.getElementById('nullMin').style.display="none";
+    } 
     document.getElementById('minutes').innerHTML = minutes;
     seconds = 59;
+    if(seconds > 9) {
+        document.getElementById('nullSec').style.display="none";
+    } 
     document.getElementById('seconds').innerHTML = seconds;
 
     intervalMin = setInterval(minutesTimer,60000);
@@ -111,12 +116,21 @@ function startBreak() {
     function minutesTimer() {
         minutes = minutes - 1;
         document.getElementById('minutes').innerHTML = minutes;
+        if(minutes <= 9) {
+            document.getElementById('nullMin').style.display="block";
+        } else {
+            document.getElementById('nullMin').style.display="none";
+        }   
     }
 
     function secondsTimer() {
         seconds = seconds - 1;
         document.getElementById('seconds').innerHTML = seconds;    
-
+        if(seconds <= 9) {
+            document.getElementById('nullSec').style.display="block";
+        } else {
+            document.getElementById('nullSec').style.display="none";
+        }   
         if(seconds <= 0) {
             if(minutes <= 0) {
                 minutes = 0;
@@ -133,25 +147,23 @@ function startBreak() {
 }
 
 
-/*
+
 function resetSession() {
     stopSound.play();
-    for (let i = 1; i < 6; i++) {   
-        document.getElementById('se'+i).style.backgroundColor = "var(--background-color)"; 
+    for(i=counter; i>0; i--) {
         document.getElementById('bre'+i).style.backgroundColor = "var(--background-color)"; 
-    }
+        document.getElementById('se'+i).style.backgroundColor = "var(--background-color)"; 
+   }
     document.getElementById('ringStyle').style.borderColor = "var(--main-color)"; 
     clearInterval(intervalMin);
     clearInterval(intervalSec);
-    minutes = "00";
+    minutes = 0;
     seconds = "00";
     document.getElementById('minutes').innerHTML = minutes;
     document.getElementById('seconds').innerHTML = seconds;
     document.getElementById('message').classList.remove('breakMessage');
     counter = 1;
     intervalMin = undefined;
-    document.getElementById("setTime").style.display = "flex"; 
-     
+    document.getElementById("setTime").style.display = "flex";     
 }
-*/
 
