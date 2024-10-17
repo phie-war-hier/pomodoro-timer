@@ -1,13 +1,16 @@
 var timerFocus;
 var timerBreak;
 
-var minutes = "00";
-var seconds = "00";
+var minutes = 0;
+var seconds = 0;
 
 function setTime() {
     timerFocus = document.getElementById("inputTimerFocus").value;
     if (timerFocus){
         document.getElementById("minutes").innerHTML = timerFocus;   
+    }
+    if(timerFocus > 9) {
+        document.getElementById('nullMin').style.display="none";
     }
 
     timerBreak = document.getElementById("inputTimerBreak").value;
@@ -42,8 +45,15 @@ function startSession() {
         document.getElementById('message').classList.remove('breakMessage');
         document.getElementById('message').innerHTML = "Session " + counter + " started";
         minutes = minutes - 1;
+        if(minutes > 9) {
+            document.getElementById('nullMin').style.display="none";
+        }
         document.getElementById('minutes').innerHTML = minutes;
+        
         seconds = 59;
+        if(seconds > 9) {
+            document.getElementById('nullSec').style.display="none";
+        } 
         document.getElementById('seconds').innerHTML = seconds;
 
         intervalMin = setInterval(minutesTimer,60000);
@@ -52,12 +62,22 @@ function startSession() {
         function minutesTimer() {
             minutes = minutes - 1;
             document.getElementById('minutes').innerHTML = minutes;
+            if(minutes <= 9) {
+                document.getElementById('nullMin').style.display="block";
+            } else {
+                document.getElementById('nullMin').style.display="none";
+            }   
         }
 
         function secondsTimer() {
             seconds = seconds - 1;
             document.getElementById('seconds').innerHTML = seconds;
-
+            console.log(seconds);
+            if(seconds <= 9) {
+                document.getElementById('nullSec').style.display="block";
+            } else {
+                document.getElementById('nullSec').style.display="none";
+            }
             if(seconds <= 0) {
                 if(minutes <= 0) {
                     minutes = 0;
