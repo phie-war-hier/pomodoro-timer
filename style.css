@@ -47,6 +47,7 @@ body {
 }
 
 .container {
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -64,18 +65,15 @@ h5 {
     font-weight: normal;
 }
 
+
 .timer {
-    color: var(--main-color);
     text-align: center;
-    width: 10rem;
-    height: 10rem;
-    border: 20px solid var(--main-color);
-    border-radius: 10rem;
+    position: absolute;
+    top: 7.4rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-
 }
 
 .row {
@@ -108,6 +106,7 @@ h5 {
     display: flex;
     flex-direction: row;
     gap: 0.6rem;
+    justify-content: center;
 }
 
 #setTime {
@@ -202,4 +201,40 @@ footer a {
     text-decoration: none;
     font-weight: normal;
   
+}
+
+
+
+
+/* Progress Ring */
+.progress-ring {
+    
+    width: 240px;
+    height: 240px;
+}
+
+.progress-ring circle {
+    fill: none;
+    stroke-width: 18;
+    transform: rotate(-90deg);
+    transform-origin: 50% 50%;
+}
+
+.progress-ring__background {
+    stroke: var(--second-color); /* Hintergrundfarbe */
+}
+
+.progress-ring__circle {
+    stroke-linecap: butt;
+    stroke-dasharray: 440;
+    stroke-dashoffset: 440;
+    transition: stroke-dashoffset 0.5s linear;
+}
+
+#ringColor {
+    stroke: var(--tertiary-color); /* Fortschrittsfarbe */
+}
+
+.percent {
+    display: none;
 }

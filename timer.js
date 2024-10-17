@@ -33,6 +33,40 @@ var breakSound = new Audio("TypewriterBellRamsamba.wav");
 var stopSound = new Audio("DigitalClickReversePrimax.mp3");
 
 
+const circle = document.querySelector('.progress-ring__circle');
+const radius = circle.r.baseVal.value;
+const circumference = 2 * Math.PI * radius;
+const percentText = document.getElementById('percent');
+
+// Setzt den Maximalwert für stroke-dasharray und -dashoffset
+circle.style.strokeDasharray = `${circumference}`;
+circle.style.strokeDashoffset = `${circumference}`;
+
+// Funktion zum Setzen des Fortschritts
+function setProgress(percent) {
+    const offset = circumference - (percent / 100) * circumference;
+    circle.style.strokeDashoffset = offset;
+    percentText.textContent = `${Math.round(percent)}%`;
+}
+
+// Zeitbasierter Fortschritt
+function startProgress() {
+    elapsedTime = 0;
+    intervalSec = setInterval(() => {
+        elapsedTime++;
+        const percent = (elapsedTime / totalTime) * 100;
+        setProgress(Math.min(percent, 100)); // Fortschritt aktualisieren
+
+        if (elapsedTime >= totalTime) {
+            clearInterval(intervalSec); // Stopp, wenn Zeit erreicht ist
+        }
+    }, 1000); // Aktualisierung alle Sekunde
+}
+
+var totalTime;
+var elapsedTime;
+
+
 function startSession() {
     if (intervalMin === undefined) {
         setTime();
@@ -43,7 +77,7 @@ function startSession() {
             minutes = timerFocus;
 
             startSound.play();
-            document.getElementById('ringStyle').style.borderColor = "var(--tertiary-color)";
+
             document.getElementById('message').classList.remove('breakMessage');
             document.getElementById('message').innerHTML = "Session " + counter + " started";
             minutes = minutes - 1;
@@ -60,6 +94,10 @@ function startSession() {
 
             intervalMin = setInterval(minutesTimer, 60000);
             intervalSec = setInterval(secondsTimer, 1000);
+
+            totalTime = timerFocus*60; // Zeit in Sekunden
+            elapsedTime = 0;
+            startProgress(); // Ring Fortschritt starten
 
             function minutesTimer() {
                 minutes = minutes - 1;
@@ -84,6 +122,8 @@ function startSession() {
                         minutes = 0;
                         clearInterval(intervalMin);
                         clearInterval(intervalSec);
+                        intervalSec = null;
+                        setProgress(0);
                         startBreak();
                     }
                     seconds = 60;
@@ -99,7 +139,6 @@ function startSession() {
 function startBreak() {
     breakSound.play();
     document.getElementById('se' + counter).style.backgroundColor = "var(--tertiary-color)";
-    document.getElementById('ringStyle').style.borderColor = "var(--main-color)";
     document.getElementById('message').innerHTML = "Take a break";
     document.getElementById('message').classList.add('breakMessage');
     minutes = timerBreak - 1;
@@ -113,8 +152,12 @@ function startBreak() {
     }
     document.getElementById('seconds').innerHTML = seconds;
 
+    totalTime = timerBreak*60; // Zeit in Sekunden
+    document.getElementById('ringColor').style.stroke = "var(--main-color)";
+    startProgress(); // Ring Fortschritt starten
+
     intervalMin = setInterval(minutesTimer, 60000);
-    intervalSec = setInterval(secondsTimer, 1000);
+    //intervalSec = setInterval(secondsTimer, 1000);
 
     function minutesTimer() {
         minutes = minutes - 1;
@@ -157,9 +200,12 @@ function resetSession() {
         document.getElementById('bre' + i).style.backgroundColor = "var(--background-color)";
         document.getElementById('se' + i).style.backgroundColor = "var(--background-color)";
     }
-    document.getElementById('ringStyle').style.borderColor = "var(--main-color)";
     clearInterval(intervalMin);
     clearInterval(intervalSec);
+
+    setProgress(0);
+    totalTime = undefined;
+    
     minutes = 0;
     seconds = "00";
     document.getElementById('minutes').innerHTML = minutes;
@@ -174,3 +220,9 @@ function resetSession() {
 function pauseSession() {
     alert("You paused the timer. If you click ok, the timer wil resume.");
 }
+
+
+
+
+
+       

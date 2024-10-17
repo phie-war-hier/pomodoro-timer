@@ -6,11 +6,17 @@
     <title>Pomodoro Timer</title>
     <link rel="stylesheet" href="style.css">
 </head>
-<body onload="template()">
-    <!--<a href="test.html">Test</a>-->
+<body onload="template()">   
     <div class="container">
         <h4>Pomodoro Timer</h4>
-        <div id="ringStyle" class="timer">
+        <div class="progress-ring">
+            <svg width="240" height="240">
+                <circle class="progress-ring__background" cx="120" cy="120" r="100"/>
+                <circle id="ringColor" class="progress-ring__circle" cx="120" cy="120" r="100"/>
+            </svg>
+            <div class="percent" id="percent">0%</div>
+        </div>
+        <div class="timer">
             <div class="row">
                 <span id="nullMin">0</span><h4 id="minutes"></h4>
                 <h4>:</h4>
