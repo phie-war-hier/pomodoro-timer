@@ -23,7 +23,6 @@ var intervalSec;
 
 var counter = 1;
 
-
 function template() {
     document.getElementById('minutes').innerHTML = minutes;
     document.getElementById('seconds').innerHTML = seconds;
@@ -88,7 +87,7 @@ function startSession() {
                     }
                     seconds = 60;
                 }
-            }  
+            } 
         } else {
             alert("Timer is already running.");
         }
@@ -170,3 +169,8 @@ function resetSession() {
     document.getElementById("setTime").style.display = "flex";     
 }
 
+
+function pauseSession() {
+    clearInterval(intervalMin);
+            clearInterval(intervalSec);
+}
