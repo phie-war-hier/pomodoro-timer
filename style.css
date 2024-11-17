@@ -33,7 +33,7 @@ html {
 
 ::selection {
     color: var(--background-color);
-    background-color: var(--accent-color);
+    background-color: var(--main-color);
 }
 
 body {

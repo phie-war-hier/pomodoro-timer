@@ -4,6 +4,8 @@ var timerBreak;
 var minutes = 0;
 var seconds = 0;
 
+let isRunning = false; 
+
 function setTime() {
     timerFocus = document.getElementById("inputTimerFocus").value;
     if (timerFocus) {
@@ -68,6 +70,12 @@ var elapsedTime;
 
 
 function startSession() {
+    if (isRunning) {
+        alert("Timer is already running.");
+        return;
+    }
+    isRunning = true;
+
     if (intervalMin === undefined) {
         setTime();
         if (timerFocus == 0 && timerBreak == 0) {
@@ -110,6 +118,8 @@ function startSession() {
             }
 
             function secondsTimer() {
+                if (!isRunning) return; // Falls der Timer nicht läuft, abbrechen
+
                 seconds = seconds - 1;
                 document.getElementById('seconds').innerHTML = seconds;
                 if (seconds <= 9) {
@@ -130,13 +140,14 @@ function startSession() {
                 }
             }
         }
-    } else {
-        alert("Timer is already running.");
-    }
+    } 
 }
 
 
 function startBreak() {
+    if (totalTime === undefined) {
+        return; // Verhindert Start der Break-Session nach Reset
+    }
     breakSound.play();
     document.getElementById('se' + counter).style.backgroundColor = "var(--tertiary-color)";
     document.getElementById('message').innerHTML = "Take a break";
@@ -170,6 +181,8 @@ function startBreak() {
     }
 
     function secondsTimer() {
+
+
         seconds = seconds - 1;
         document.getElementById('seconds').innerHTML = seconds;
         if (seconds <= 9) {
@@ -195,25 +208,47 @@ function startBreak() {
 
 
 function resetSession() {
-    stopSound.play();
-    for (i = counter; i > 0; i--) {
-        document.getElementById('bre' + i).style.backgroundColor = "var(--background-color)";
-        document.getElementById('se' + i).style.backgroundColor = "var(--background-color)";
-    }
+    stopSound.play(); // Sound wird abgespielt
+
+    // Stoppe alle aktiven Timer
     clearInterval(intervalMin);
     clearInterval(intervalSec);
 
+    intervalMin = null; // Setze die Intervalle auf null
+    intervalSec = null;
+
+    isRunning = false; // Timer-Status zurücksetzen
+
+    // Fortschrittsanzeige zurücksetzen
     setProgress(0);
-    totalTime = undefined;
-    
-    minutes = 0;
-    seconds = "00";
-    document.getElementById('minutes').innerHTML = minutes;
-    document.getElementById('seconds').innerHTML = seconds;
+
+    // Variablen zurücksetzen
+     totalTime = undefined;
+     elapsedTime = 0;
+     minutes = 0;
+     seconds = "00";
+
+
+      // UI-Elemente aktualisieren
+    document.getElementById('minutes').innerHTML = "0";
+    document.getElementById('seconds').innerHTML = "00";
     document.getElementById('message').classList.remove('breakMessage');
+    document.getElementById('message').innerHTML = "Set your time";
+
+    // Counter und Session-Indikatoren zurücksetzen
     counter = 1;
-    intervalMin = undefined;
-    document.getElementById("setTime").style.display = "flex";
+    const sessionIndicators = document.querySelectorAll('[id^="se"], [id^="bre"]');
+    sessionIndicators.forEach(indicator => {
+        indicator.style.backgroundColor = "var(--background-color)";
+    });
+
+     // Eingabebereiche wieder aktivieren
+     document.getElementById("setTime").style.display = "flex";
+
+     // Timer-Status zurücksetzen
+     intervalMin = undefined;
+     intervalSec = undefined;
+
 }
 
 
